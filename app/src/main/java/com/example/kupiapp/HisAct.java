@@ -1,20 +1,13 @@
 package com.example.kupiapp;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegAct extends AppCompatActivity {
+public class HisAct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reg);
-    }
-
-    public void OnClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), AutoAct.class);
-        startActivity(intent);
+        setContentView(R.layout.history);
     }
 }

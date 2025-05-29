@@ -13,7 +13,7 @@
         android:theme="@style/Theme.KupiApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".AutoAct"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +23,12 @@
         </activity>
         <activity
             android:name=".RegAct"
+            android:exported="true" />
+        <activity
+            android:name=".MainAct"
+            android:exported="true" />
+        <activity
+            android:name=".HisAct"
             android:exported="true" />
         </application>
 </manifest>

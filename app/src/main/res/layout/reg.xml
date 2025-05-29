@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".AutoAct"
     android:background="@drawable/main_bg"
     android:gravity="center"
     android:orientation="vertical">
@@ -171,14 +171,16 @@
                     android:textSize="15dp" />
 
                 <TextView
+                    android:onClick="OnClick"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0.5dp"
-                    android:fontFamily="@font/monreg"
+                    android:fontFamily="@font/monbold"
                     android:text="Авторизируйтесь!"
                     android:textAlignment="center"
                     android:textColor="#80AB95"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:clickable="true"/>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".AutoAct"
     android:background="@drawable/main_bg"
     android:gravity="center"
     android:orientation="vertical">
@@ -81,19 +81,22 @@
                     app:boxCornerRadiusBottomStart="5dp"
                     app:boxCornerRadiusTopEnd="5dp"
                     app:boxCornerRadiusTopStart="5dp"
-                    app:hintTextAppearance="@style/MyHintStyle">
+                    app:hintTextAppearance="@style/MyHintStyle"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emailAutoText"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/passwordAuto"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:hint="Пароль"
                     android:backgroundTint="@color/main"
                     app:boxCornerRadiusBottomEnd="5dp"
@@ -101,7 +104,9 @@
                     app:boxCornerRadiusTopEnd="5dp"
                     app:boxCornerRadiusTopStart="5dp"
                     app:endIconMode="password_toggle"
-                    app:hintTextAppearance="@style/MyHintStyle">
+                    app:hintTextAppearance="@style/MyHintStyle"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="8">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordAutoText"
@@ -126,22 +131,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0.5dp"
                     android:fontFamily="@font/monbold"
-                    android:onClick="OnClick"
                     android:text="Зарегистрируйтесь!"
                     android:textAlignment="center"
                     android:textColor="#80AB95"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp"
+                    android:onClick="RegLink"/>
+                <TextView
+                    android:id="@+id/ErrorMsg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/error"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/monbold"
+                    android:layout_marginTop="10dp"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/AutoButton"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_marginHorizontal="40dp"
-                    android:layout_marginTop="90dp"
                     app:cornerRadius="10dp"
                     android:backgroundTint="@color/main"
                     android:text="Авторизация"
-                    android:fontFamily="@font/monreg"/>
+                    android:fontFamily="@font/monreg"
+                    android:onClick="OnClick"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>

@@ -1,6 +1,8 @@
 package com.example.kupiapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,10 +19,9 @@ public class AutoAct extends AppCompatActivity {
     TextInputLayout emailLayout, passwordLayout;
     TextInputEditText emailEditText, passwordEditText;
     TextView errorMsg;
-    Boolean checkEmail = false;
-    Boolean checkPass = false;
-    String UserEmail;
-    String UserPass;
+    Boolean checkEmail = false; Boolean checkPass = false;
+    String UserEmail; String UserPass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +99,18 @@ public class AutoAct extends AppCompatActivity {
     }
 
     public void OnClick(View view) {
-        if ((checkPass && checkEmail) && (UserEmail == emailEditText.getText().toString()) &&
-                (UserPass == passwordEditText.getText().toString()) ) {
+        SharedPreferences sharedPref = getSharedPreferences("my_data", Context.MODE_PRIVATE);
+
+        String savedEmail = sharedPref.getString("email", "");
+        String savedPassword = sharedPref.getString("password", "");
+        if (savedEmail.isEmpty() && savedPassword.isEmpty())
+            errorMsg.setText("Пользователь не зарегистрирован!");
+        else if (checkPass && checkEmail && savedEmail.equals(emailEditText.getText().toString()) &&
+        savedPassword.equals(passwordEditText.getText().toString())){
             Intent intent = new Intent(getApplicationContext(), MainAct.class);
             startActivity(intent);
         }
-        else errorMsg.setText("Ошибка ввода данных или пользователь не найден!");
+        else errorMsg.setText("Ошибка ввода данных!");
     }
 
     public void RegLink(View view) {

@@ -77,7 +77,9 @@
                             app:boxCornerRadiusBottomStart="5dp"
                             app:boxCornerRadiusTopEnd="5dp"
                             app:boxCornerRadiusTopStart="5dp"
-                            app:hintTextAppearance="@style/MyHintStyle">
+                            app:hintTextAppearance="@style/MyHintStyle"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/DiapBeginText"
@@ -111,7 +113,9 @@
                             app:boxCornerRadiusBottomStart="5dp"
                             app:boxCornerRadiusTopEnd="5dp"
                             app:boxCornerRadiusTopStart="5dp"
-                            app:hintTextAppearance="@style/MyHintStyle">
+                            app:hintTextAppearance="@style/MyHintStyle"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="20">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/DiapEndText"

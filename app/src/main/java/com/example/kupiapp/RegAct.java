@@ -60,8 +60,7 @@ public class RegAct extends AppCompatActivity {
                 if (valid.CheckRightLength(email, emailLayout.getCounterMaxLength()))
                     checkEmail = true;
                 else {
-                    emailLayout.setError("Электронная почта не может содержать больше "
-                            + emailLayout.getCounterMaxLength() + " символов");
+                    emailLayout.setError("");
                     checkEmail = false;
                 }
             }
@@ -83,8 +82,7 @@ public class RegAct extends AppCompatActivity {
                     passwordLayout.setError(null);
                     checkPass = true;
                 } else {
-                    passwordLayout.setError("Имя не может содержать больше "
-                            + passwordLayout.getCounterMaxLength() + " символов");
+                    passwordLayout.setError("");
                     checkPass = false;
                 }
             }
@@ -106,8 +104,7 @@ public class RegAct extends AppCompatActivity {
                     nameLayout.setError(null);
                     checkName = true;
                 } else {
-                    nameLayout.setError("Пароль не может содержать больше "
-                            + nameLayout.getCounterMaxLength() + " символов");
+                    nameLayout.setError("");
                     checkName = false;
                 }
             }

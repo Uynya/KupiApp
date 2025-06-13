@@ -2,6 +2,7 @@ package com.example.kupiapp;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,9 @@ public class MainAct extends AppCompatActivity {
     TextInputEditText startEditText, endEditText;
     TextView logView;
     Boolean checkDiap = false;
+    int choose = 0;
+    Validation valid = new Validation();
+    LogManager logM = new LogManager(logView);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +28,7 @@ public class MainAct extends AppCompatActivity {
         startEditText = findViewById(R.id.DiapBeginText);
         endEditText = findViewById(R.id.DiapEndText);
         logView = findViewById(R.id.Log);
-        Validation valid = new Validation();
+
 
         startEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,5 +76,38 @@ public class MainAct extends AppCompatActivity {
                 }
             }
         });
+
+
+    }
+
+    public void TaskOne(View view) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
+            logView.append(logM.StartLog("Числа Цукермана", Integer.parseInt(startEditText.getText().toString()),
+                    Integer.parseInt(endEditText.getText().toString())));
+            choose = 1;
+        }
+        else
+            logView.append("Ошибка: введите диапазон" + "\n");
+    }
+
+    public void Clear(View view) {
+        logView.setText("");
+    }
+
+    public void Start(View view) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
+            switch (choose) {
+                case 0:
+                    logView.append("Ошибка: выберите задачу" + "\n");
+                    break;
+                case 1:
+                    Zuckerman zuck = new Zuckerman(logView);
+                    logView.append(logM.Launch());
+                    zuck.findZuckermanNumbers(Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString()));
+            }
+        }
+        else
+            logView.append("Ошибка: введите диапазон" + "\n");
     }
 }

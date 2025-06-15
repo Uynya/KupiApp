@@ -29,12 +29,20 @@ public class LogManager {
 
         return s;
     }
-    public String Launch()
+    public String Launch(int choose)
     {
-        String s = "";
-        s+= "[" + getCurrentTimestamp() + "]";
-        s+= " Поиск запущен" + "\n";
-        return s;
+        if (choose == 1) {
+            String s = "";
+            s += "[" + getCurrentTimestamp() + "]";
+            s += " Поиск запущен" + "\n";
+            return s;
+        }
+        else {
+            String s = "";
+            s += "[" + getCurrentTimestamp() + "]";
+            s += " Поиск завершён" + "\n";
+            return s;
+        }
     }
 
     public String LogNum(int num)

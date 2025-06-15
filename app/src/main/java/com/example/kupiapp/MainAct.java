@@ -63,7 +63,6 @@ public class MainAct extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 String number = s.toString().trim();
@@ -76,12 +75,10 @@ public class MainAct extends AppCompatActivity {
                 }
             }
         });
-
-
     }
-
     public void TaskOne(View view) {
-        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
+                Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
             logView.append(logM.StartLog("Числа Цукермана", Integer.parseInt(startEditText.getText().toString()),
                     Integer.parseInt(endEditText.getText().toString())));
             choose = 1;
@@ -89,11 +86,26 @@ public class MainAct extends AppCompatActivity {
         else
             logView.append("Ошибка: введите диапазон" + "\n");
     }
-
-    public void Clear(View view) {
-        logView.setText("");
+    public void TaskTwo(View view) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
+                Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
+            logView.append(logM.StartLog("Числа Нивена", Integer.parseInt(startEditText.getText().toString()),
+                    Integer.parseInt(endEditText.getText().toString())));
+            choose = 2;
+        }
+        else
+            logView.append("Ошибка: введите диапазон корректно" + "\n");
     }
-
+    public void TaskThree(View view) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
+                Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
+            logView.append(logM.StartLog("Числа Армстронга", Integer.parseInt(startEditText.getText().toString()),
+                    Integer.parseInt(endEditText.getText().toString())));
+            choose = 3;
+        }
+        else
+            logView.append("Ошибка: введите диапазон корректно" + "\n");
+    }
     public void Start(View view) {
         if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
             switch (choose) {
@@ -102,12 +114,36 @@ public class MainAct extends AppCompatActivity {
                     break;
                 case 1:
                     Zuckerman zuck = new Zuckerman(logView);
-                    logView.append(logM.Launch());
+                    logView.append(logM.Launch(1));
                     zuck.findZuckermanNumbers(Integer.parseInt(startEditText.getText().toString()),
                             Integer.parseInt(endEditText.getText().toString()));
+                    logView.append(logM.Launch(2));
+                    choose = 0;
+                    break;
+                case 2:
+                    Niven niv = new Niven(logView);
+                    logView.append(logM.Launch(1));
+                    niv.findNivenNumbers(Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString()));
+                    logView.append(logM.Launch(2));
+                    choose = 0;
+                    break;
+                case 3:
+                    Armstrong arm = new Armstrong(logView);
+                    logView.append(logM.Launch(1));
+                    arm.findArmstrongNumbers(Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString()));
+                    logView.append(logM.Launch(2));
+                    choose = 0;
+                    break;
             }
         }
         else
-            logView.append("Ошибка: введите диапазон" + "\n");
+            logView.append("Ошибка: введите диапазон корректно" + "\n");
     }
+    public void Clear(View view) {
+        logView.setText("");
+    }
+
+
 }

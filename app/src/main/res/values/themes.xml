@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.KupiApp" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">#40564B</item>
+        <item name="android:navigationBarColor">#40564B</item>
     </style>
 
     <style name="Theme.KupiApp" parent="Base.Theme.KupiApp" />

@@ -66,8 +66,7 @@ public class AutoAct extends AppCompatActivity {
                 if (valid.CheckRightLength(email, emailLayout.getCounterMaxLength()))
                     checkEmail = true;
                 else {
-                    emailLayout.setError("Электронная почта не может содержать больше "
-                            + emailLayout.getCounterMaxLength() + " символов");
+                    emailLayout.setError("Ошибка: проверьте кол-во символов");
                     checkEmail = false;
                 }
             }
@@ -90,8 +89,7 @@ public class AutoAct extends AppCompatActivity {
                     passwordLayout.setError(null);
                     checkPass = true;
                 } else {
-                    passwordLayout.setError("Пароль не может содержать больше "
-                            + passwordLayout.getCounterMaxLength() + " символов");
+                    passwordLayout.setError("Ошибка: проверьте кол-во символов");
                     checkPass = false;
                 }
             }
@@ -99,18 +97,14 @@ public class AutoAct extends AppCompatActivity {
     }
 
     public void OnClick(View view) {
-        SharedPreferences sharedPref = getSharedPreferences("my_data", Context.MODE_PRIVATE);
-
-        String savedEmail = sharedPref.getString("email", "");
-        String savedPassword = sharedPref.getString("password", "");
-        if (savedEmail.isEmpty() && savedPassword.isEmpty())
-            errorMsg.setText("Пользователь не зарегистрирован!");
-        else if (checkPass && checkEmail && savedEmail.equals(emailEditText.getText().toString()) &&
+        String savedEmail = SaveData.SavedEmail;
+        String savedPassword = SaveData.Savedpassword;
+        if (checkPass && checkEmail && savedEmail.equals(emailEditText.getText().toString()) &&
         savedPassword.equals(passwordEditText.getText().toString())){
             Intent intent = new Intent(getApplicationContext(), MainAct.class);
             startActivity(intent);
         }
-        else errorMsg.setText("Ошибка ввода данных!");
+        else errorMsg.setText("Ошибка ввода данных\n" + "или пользователь не найден!");
     }
 
     public void RegLink(View view) {

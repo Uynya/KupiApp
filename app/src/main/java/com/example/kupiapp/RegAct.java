@@ -136,12 +136,9 @@ public class RegAct extends AppCompatActivity {
 
     public void OnClick(View view) {
         if (checkName && checkName && checkPass) {
-            SharedPreferences sharedPref = getSharedPreferences("my_data", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString("email", emailEditText.getText().toString());
-            editor.putString("password", passwordEditText.getText().toString());
-            editor.putString("username", nameEditText.getText().toString());
-            editor.apply();
+            SaveData.SavedEmail = emailEditText.getText().toString();
+            SaveData.Savedpassword = passwordEditText.getText().toString();
+            SaveData.Savedname = nameEditText.getText().toString();
 
             Intent intent = new Intent(getApplicationContext(), MainAct.class);
             startActivity(intent);

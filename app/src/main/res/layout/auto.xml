@@ -153,6 +153,7 @@
                     android:layout_marginHorizontal="40dp"
                     app:cornerRadius="10dp"
                     android:backgroundTint="@color/main"
+                    android:textColor="@color/white"
                     android:text="Авторизация"
                     android:fontFamily="@font/monreg"
                     android:onClick="OnClick"/>

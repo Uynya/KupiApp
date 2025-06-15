@@ -1,4 +1,9 @@
 package com.example.kupiapp;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,6 +12,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -14,10 +20,10 @@ public class MainAct extends AppCompatActivity {
     TextInputLayout startLayout, endLayout;
     TextInputEditText startEditText, endEditText;
     TextView logView;
-    Boolean checkDiap = false;
-    int choose = 0;
-    Validation valid = new Validation();
-    LogManager logM = new LogManager(logView);
+    Boolean checkDiap = false; int choose = 1;
+    Validation valid = new Validation(); LogManager logM = new LogManager(logView);
+    MaterialButton one, two, three, four;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +35,13 @@ public class MainAct extends AppCompatActivity {
         endEditText = findViewById(R.id.DiapEndText);
         logView = findViewById(R.id.Log);
 
+        one = findViewById(R.id.One);
+        two = findViewById(R.id.Two);
+        three = findViewById(R.id.Three);
+        four = findViewById(R.id.Four);
+
+        one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.click)));
+        logView.append(logM.StartLog("Числа Цукермана"));
 
         startEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,71 +92,133 @@ public class MainAct extends AppCompatActivity {
     public void TaskOne(View view) {
         if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
                 Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
-            logView.append(logM.StartLog("Числа Цукермана", Integer.parseInt(startEditText.getText().toString()),
-                    Integer.parseInt(endEditText.getText().toString())));
+            String log = logM.StartLog("Числа Цукермана");
+            logView.append(log);
             choose = 1;
+            one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.click)));
+            two.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            three.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            four.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+
         }
-        else
-            logView.append("Ошибка: введите диапазон" + "\n");
+        else {
+            String log = logM.SetError(1);
+            logView.append(log);
+        }
     }
     public void TaskTwo(View view) {
         if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
                 Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
-            logView.append(logM.StartLog("Числа Нивена", Integer.parseInt(startEditText.getText().toString()),
-                    Integer.parseInt(endEditText.getText().toString())));
+            String log = logM.StartLog("Числа Нивена");
+            logView.append(log);
             choose = 2;
+            one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            two.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.click)));
+            three.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            four.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
         }
-        else
-            logView.append("Ошибка: введите диапазон корректно" + "\n");
+        else {
+            String log = logM.SetError(1);
+            logView.append(log);
+        }
     }
     public void TaskThree(View view) {
         if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
                 Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
-            logView.append(logM.StartLog("Числа Армстронга", Integer.parseInt(startEditText.getText().toString()),
-                    Integer.parseInt(endEditText.getText().toString())));
+            String log = logM.StartLog("Числа Армстронга");
+            logView.append(log);
             choose = 3;
+            one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            two.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            three.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.click)));
+            four.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
         }
-        else
-            logView.append("Ошибка: введите диапазон корректно" + "\n");
+        else {
+            String log = logM.SetError(1);
+            logView.append(log);
+        }
+    }
+    public void TaskFour(View view) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() &&
+                Integer.parseInt(startEditText.getText().toString()) < Integer.parseInt(endEditText.getText().toString())) {
+            String log = logM.StartLog("Числа Капрекара");
+            logView.append(log);
+            choose = 4;
+            one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            two.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            three.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+            four.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.click)));
+        }
+        else {
+            String log = logM.SetError(1);
+            logView.append(log);
+        }
     }
     public void Start(View view) {
         if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
             switch (choose) {
                 case 0:
-                    logView.append("Ошибка: выберите задачу" + "\n");
+                    String log = logM.SetError(2);
+                    logView.append(log);
                     break;
                 case 1:
                     Zuckerman zuck = new Zuckerman(logView);
-                    logView.append(logM.Launch(1));
+                    logView.append(logM.Launch(1, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
                     zuck.findZuckermanNumbers(Integer.parseInt(startEditText.getText().toString()),
                             Integer.parseInt(endEditText.getText().toString()));
-                    logView.append(logM.Launch(2));
+                    logView.append(logM.Launch(2, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
+                    one.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
                     choose = 0;
                     break;
                 case 2:
                     Niven niv = new Niven(logView);
-                    logView.append(logM.Launch(1));
+                    logView.append(logM.Launch(1, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
                     niv.findNivenNumbers(Integer.parseInt(startEditText.getText().toString()),
                             Integer.parseInt(endEditText.getText().toString()));
-                    logView.append(logM.Launch(2));
+                    logView.append(logM.Launch(2, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
+                    two.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
                     choose = 0;
                     break;
                 case 3:
                     Armstrong arm = new Armstrong(logView);
-                    logView.append(logM.Launch(1));
+                    logView.append(logM.Launch(1, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
                     arm.findArmstrongNumbers(Integer.parseInt(startEditText.getText().toString()),
                             Integer.parseInt(endEditText.getText().toString()));
-                    logView.append(logM.Launch(2));
+                    logView.append(logM.Launch(2, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
+                    three.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
+                    choose = 0;
+                    break;
+                case 4:
+                    Kaprekar kar = new Kaprekar(logView);
+                    logView.append(logM.Launch(1, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
+                    kar.findKaprekarNumbers(Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString()));
+                    logView.append(logM.Launch(2, Integer.parseInt(startEditText.getText().toString()),
+                            Integer.parseInt(endEditText.getText().toString())));
+                    four.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.main)));
                     choose = 0;
                     break;
             }
         }
-        else
-            logView.append("Ошибка: введите диапазон корректно" + "\n");
+        else {
+            String log = logM.SetError(1);
+            logView.append(log);
+        }
     }
     public void Clear(View view) {
         logView.setText("");
     }
 
 
+    public void History(View view) {
+        Intent intent = new Intent(getApplicationContext(), HisAct.class);
+        startActivity(intent);
+    }
 }

@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main">#40564B</color>
     <color name="error">#9A2121</color>
+    <color name="click">#24302a</color>
 </resources>

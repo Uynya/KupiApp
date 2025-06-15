@@ -26,7 +26,8 @@ public class HisAct extends AppCompatActivity {
 
     public void Back(View view) {
         Intent intent = new Intent(this, MainAct.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP); //я не уверена,
+        // как оно работает, но я не знаю, как сделать по-другому
         startActivity(intent);
         finish();
     }

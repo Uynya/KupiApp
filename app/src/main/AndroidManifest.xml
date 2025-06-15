@@ -30,5 +30,8 @@
         <activity
             android:name=".HisAct"
             android:exported="true" />
+        <activity
+            android:name=".FanAct"
+            android:exported="true" />
         </application>
 </manifest>

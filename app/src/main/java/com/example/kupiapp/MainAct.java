@@ -155,7 +155,7 @@ public class MainAct extends AppCompatActivity {
         }
     }
     public void Start(View view) {
-        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty()) {
+        if (!startEditText.getText().toString().isEmpty() && !endEditText.getText().toString().isEmpty() && checkDiap) {
             switch (choose) {
                 case 0:
                     String log = logM.SetError(2);
@@ -219,6 +219,11 @@ public class MainAct extends AppCompatActivity {
 
     public void History(View view) {
         Intent intent = new Intent(getApplicationContext(), HisAct.class);
+        startActivity(intent);
+    }
+
+    public void fan(View view) {
+        Intent intent = new Intent(getApplicationContext(), FanAct.class);
         startActivity(intent);
     }
 }

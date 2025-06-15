@@ -28,12 +28,6 @@ public class AutoAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.auto);
 
-        Bundle arguments = getIntent().getExtras();
-        if (arguments != null) {
-            UserEmail = arguments.get("email").toString();
-            UserPass = arguments.get("password").toString();
-        }
-
         emailLayout = findViewById(R.id.emailAuto);
         passwordLayout = findViewById(R.id.passwordAuto);
         emailEditText = findViewById(R.id.emailAutoText);
